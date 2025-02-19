@@ -24,7 +24,6 @@ export default async (req: Request, context: Context) => {
       stream: true,
     });
 
-    // Create a ReadableStream for the response
     const readableStream = new ReadableStream({
       async start(controller) {
         for await (const chunk of stream) {
@@ -37,7 +36,6 @@ export default async (req: Request, context: Context) => {
       },
     });
 
-    // Return a Response object with the stream
     return new Response(readableStream, {
       headers: {
         "Content-Type": "text/event-stream",
